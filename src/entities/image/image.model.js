@@ -1,7 +1,7 @@
-// const surveySchema = require('../survey/survey.schema')
+// const imageSchema = require('./image.schema')
 
 module.exports = db => /* {
-  const surveyData = db.model('survey', surveySchema, 'survey')
+  const imageData = db.model('image', imageSchema, 'image')
 
   return */ Object.freeze({
     get: async (find, limit, offset, sort) => {

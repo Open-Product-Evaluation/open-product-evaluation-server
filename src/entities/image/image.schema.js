@@ -10,12 +10,20 @@ const ImageData = new Schema({
   url: { type: String, required: true },
 }, { timestamps: { createdAt: 'creationDate' } })
 
-ImageData.methods.toClient = function toClient() {
-  const obj = this.toObject()
+const toClient = function toClient(image) {
+  const obj = image
   obj.id = obj._id
   delete obj._id
 
   return obj
 }
+
+ImageData.post('save', function saveToClient() {
+  toClient(this)
+})
+
+ImageData.post('find', function findToClient() {
+  toClient(this)
+})
 
 module.exports = ImageData
