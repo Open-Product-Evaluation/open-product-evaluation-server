@@ -21,31 +21,7 @@ const survey = [
       getObjectID('question10'),
     ],
     votes: [
-      {
-        _id: getObjectID('vote1'),
-        creationDate: new Date(),
-        lastUpdate: new Date(),
-        context: getObjectID('context1'),
-        answers: [
-          {
-            question: getObjectID('question1'),
-            choiceCode: 'A',
-          },
-          {
-            question: getObjectID('question4'),
-            liked: true,
-          },
-          {
-            question: getObjectID('question5'),
-            liked: null,
-          },
-          {
-            question: getObjectID('question10'),
-            rating: 1.0,
-            normalized: 0.00001123323234234234,
-          },
-        ],
-      },
+      getObjectID('vote1'),
     ],
     contexts: [
       getObjectID('context1'),
