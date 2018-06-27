@@ -1,11 +1,7 @@
-
-
 const mongoose = require('mongoose')
 
 const { Schema } = mongoose
-const { Vote } = require('../vote/vote.schema')
-const Question = require('../question/question.schema')
-const ImageData = require('../image/image.schema')
+const _ = require('underscore')
 
 const Survey = new Schema({
   creator: { type: Schema.Types.ObjectId, required: true },
@@ -13,18 +9,30 @@ const Survey = new Schema({
   description: { type: String, required: true },
   isPublic: { type: Boolean, default: false },
   types: [{ type: String, enum: ['CHOICE', 'FAVORITE', 'LIKE', 'LIKEDISLIKE', 'RANKING', 'REGULATOR'] }],
-  questions: [Question],
-  votes: [Vote],
+  questions: [Schema.Types.ObjectId],
+  votes: [Schema.Types.ObjectId],
   contexts: [Schema.Types.ObjectId],
-  images: [ImageData],
+  images: [Schema.Types.ObjectId],
 }, { timestamps: { createdAt: 'creationDate', updatedAt: 'lastUpdate' } })
 
-Survey.methods.toClient = function toClient() {
-  const obj = this.toObject()
+const toClient = function toClient(survey) {
+  const obj = survey
   obj.id = obj._id
   delete obj._id
 
   return obj
 }
+
+Survey.pre('save', function removeDuplicateTypes() {
+  _.uniq(this.types)
+})
+
+Survey.post('save', function saveToClient() {
+  toClient(this)
+})
+
+Survey.post('find', function findToClient() {
+  toClient(this)
+})
 
 module.exports = Survey
