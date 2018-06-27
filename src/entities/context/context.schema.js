@@ -16,7 +16,8 @@ const Context = new Schema({
   states: [State],
 }, { timestamps: { createdAt: 'creationDate', updatedAt: 'lastUpdate' } })
 
-const toClient = function toClient(obj) {
+const toClient = function toClient(context) {
+  const obj = context
   obj.id = obj._id
   delete obj._id
 
