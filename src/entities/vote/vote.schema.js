@@ -1,5 +1,3 @@
-
-
 const mongoose = require('mongoose')
 
 const { Schema } = mongoose
@@ -14,24 +12,25 @@ const Answer = new Schema({
   favoriteImage: Schema.Types.ObjectId,
 }, { _id: false })
 
-Answer.methods.toClient = function toClient() {
-  const obj = this.toObject()
-  delete obj._id
-
-  return obj
-}
-
 const Vote = new Schema({
   context: { type: Schema.Types.ObjectId, required: true },
   answers: { type: [Answer], required: true },
 }, { timestamps: { createdAt: 'creationDate' } })
 
-Vote.methods.toClient = function toClient() {
-  const obj = this.toObject()
+const toClient = function toClient(vote) {
+  const obj = vote
   obj.id = obj._id
   delete obj._id
 
   return obj
 }
 
-module.exports = { Vote, Answer }
+Vote.post('save', function saveToClient() {
+  toClient(this)
+})
+
+Vote.post('find', function findToClient() {
+  toClient(this)
+})
+
+module.exports = Vote

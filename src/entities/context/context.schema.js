@@ -1,7 +1,11 @@
 const mongoose = require('mongoose')
 
 const { Schema } = mongoose
-const State = require('../state/state.schema')
+
+const State = new Schema({
+  key: { type: String, required: true },
+  value: { type: String, required: true },
+}, { _id: false })
 
 const Context = new Schema({
   name: { type: String, required: true },
@@ -12,12 +16,20 @@ const Context = new Schema({
   states: [State],
 }, { timestamps: { createdAt: 'creationDate', updatedAt: 'lastUpdate' } })
 
-Context.methods.toClient = function toClient() {
-  const obj = this.toObject()
+const toClient = function toClient(context) {
+  const obj = context
   obj.id = obj._id
   delete obj._id
 
   return obj
 }
+
+Context.post('save', function saveToClient() {
+  toClient(this)
+})
+
+Context.post('find', function findToClient() {
+  toClient(this)
+})
 
 module.exports = Context

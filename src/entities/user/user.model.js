@@ -10,14 +10,14 @@ module.exports = (db) => {
       try {
         const users = await User.find(find).limit(limit).skip(offset).sort(sort)
         if (users.length === 0) throw new Error('User not found.')
-        return users.map(user => user.toClient())
+        return users
       } catch (e) {
         throw e
       }
     },
     insert: async (object) => {
       try {
-        if (await isEmailFree(object.email)) return (await new User(object).save()).toClient()
+        if (await isEmailFree(object.email)) return await new User(object).save()
         throw new Error('Email already in use. Could not create user.')
       } catch (e) {
         throw e
@@ -28,7 +28,7 @@ module.exports = (db) => {
         if (Object.prototype.hasOwnProperty.call(data, 'email') && !(await isEmailFree(data.email))) throw new Error('Email already in use. Could not update user.')
         const updatedUser = await User.findByIdAndUpdate(id, data, { new: true })
         if (!updatedUser) throw new Error('User not found.')
-        return updatedUser.toClient()
+        return updatedUser
       } catch (e) {
         throw e
       }
@@ -37,7 +37,7 @@ module.exports = (db) => {
       try {
         const deletedUser = await User.findByIdAndDelete(id)
         if (!deletedUser) throw new Error('User not found.')
-        return deletedUser.toClient()
+        return deletedUser
       } catch (e) {
         throw e
       }
