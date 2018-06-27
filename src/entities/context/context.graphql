@@ -6,6 +6,10 @@ type Query {
 
     """ Returns the specified Context """
     context(contextID : ID!) : Context!
+
+
+    """ Returns the specified state of a context """
+    state(contextID : ID!, key : String!) : State!
 }
 
 """ Defines the GraphQL Mutations """
@@ -20,6 +24,18 @@ type Mutation {
 
     """ Deletes the specified Context and returns the deleted Context data """
     deleteContext(contextID : ID!) : ContextDeletePayload!
+
+
+    """ Creates a State for a controller and returns the created State data """
+    createState(data : StateCreateInput!) : StateCreatePayload!
+
+
+    """ Updates the specified State and returns the updated State data """
+    updateState(data : StateUpdateInput!, contextID : String!) : StateUpdatePayload!
+
+
+    """ Deletes the specified State and returns the deleted State data """
+    deleteState(data : StateDeleteInput!, contextID : String!) : StateDeletePayload!
 }
 
 """ Defines the GraphQL Subscriptions """
@@ -102,4 +118,65 @@ type ContextDeletePayload {
 
     """ the context data """
     context : Context!
+}
+
+""" Key-value pairs representing a client state """
+type State {
+
+    """ the key """
+    key : String!
+
+    """ the value """
+    value : String!
+}
+
+""" Defines the input to create a state """
+input StateCreateInput {
+
+    """ the associated contextID """
+    contextID : String!
+
+    """ the key """
+    key : String!
+
+    """ the value """
+    value : String!
+}
+
+""" Defines the payload to create a state """
+type StateCreatePayload {
+
+    """ the state """
+    state : State!
+}
+
+""" Defines the input to update a state """
+input StateUpdateInput {
+
+    """ the key """
+    key : String!
+
+    """ the value """
+    value : String!
+}
+
+""" Defines the payload to update state """
+type StateUpdatePayload {
+
+    """ the state to update """
+    state : State!
+}
+
+""" Defines the input to delete a state """
+input StateDeleteInput {
+
+    """ the key """
+    key : String!
+}
+
+""" Defines the payload to delete state """
+type StateDeletePayload {
+
+    """ the state to delete """
+    state : State!
 }
