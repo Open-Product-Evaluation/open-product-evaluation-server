@@ -8,13 +8,21 @@ const Device = new Schema({
   owners: [Schema.Types.ObjectId],
 }, { timestamps: { createdAt: 'creationDate', updatedAt: 'lastUpdate' } })
 
-Device.methods.toClient = function toClient() {
-  const obj = this.toObject()
+const toClient = function toClient(device) {
+  const obj = device
   obj.id = obj._id
   delete obj._id
 
   return obj
 }
+
+Device.post('save', function saveToClient() {
+  toClient(this)
+})
+
+Device.post('find', function findToClient() {
+  toClient(this)
+})
 
 module.exports = Device
 
