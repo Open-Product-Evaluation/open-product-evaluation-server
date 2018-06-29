@@ -1,4 +1,4 @@
-# Open Product Evaluation Server
+# Open Product Evaluation Server [![Build Status](https://travis-ci.org/th-koeln/open-product-evaluation-server.svg?branch=master)](https://travis-ci.org/th-koeln/open-product-evaluation-server)
 
 Installation:
 * Repository in ein beliebiges Verzeichnis clonen

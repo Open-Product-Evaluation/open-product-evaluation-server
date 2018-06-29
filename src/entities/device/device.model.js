@@ -1,17 +1,18 @@
-// TODO require mongoose model and mongodb
+// const deviceSchema = require('./device.schema')
 
-module.exports.get = (find, limit, offset, sort, callback) => {
+// TODO: require dbLoader / getDB and create model
+module.exports = () =>
+  Object.freeze({
+    get: async (find, limit, offset, sort) => {
 
-}
+    },
+    insert: async (object) => {
 
-module.exports.insert = (object, callback) => {
+    },
+    update: async (id, data) => {
 
-}
+    },
+    delete: async (id) => {
 
-module.exports.update = (id, data, callback) => {
-
-}
-
-module.exports.delete = (id, callback) => {
-
-}
+    },
+  })

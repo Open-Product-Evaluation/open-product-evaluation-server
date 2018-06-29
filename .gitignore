@@ -238,3 +238,6 @@ mongodb.log
 mongodb/
 
 .env
+
+#VSCode
+.vscode/
