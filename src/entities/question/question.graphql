@@ -403,7 +403,7 @@ input RegulatorQuestionUpdateInput {
 """ The description of steps that are important for orientation / understanding (distributed in a linear way) """
 type Label {
     """ The text of a label """
-    text : String!
+    label : String!
 
     """ The image that has to be shown for a label """
     image : ImageData
@@ -416,7 +416,7 @@ type Label {
 input LabelCreateInput {
 
     """ the label text """
-    text : String!
+    label : String!
 
     """ the label image """
     image : ID
@@ -568,5 +568,5 @@ type QuestionUpdatePayload {
 type QuestionDeletePayload {
 
     """ Defines the survey to delete """
-    survey : Survey!
+    success : Boolean!
 }

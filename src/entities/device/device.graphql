@@ -1,6 +1,6 @@
 """ Defines to GraphQL Queries """
 type Query {
-     """  Returns a list of Devices """
+    """  Returns a list of Devices """
     devices(userID : ID) : [Device!]
 
     """ Returns the specified Device """
