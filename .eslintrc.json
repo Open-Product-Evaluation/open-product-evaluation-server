@@ -30,6 +30,9 @@
             "args": "none"
           }
         ],
-        "no-console": "off"
+        "no-console": "off",
+        "global-require": "off",
+        "import/no-dynamic-require": "off",
+        "no-underscore-dangle": "off"
     }
 }

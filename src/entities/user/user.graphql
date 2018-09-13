@@ -29,7 +29,7 @@ type Mutation {
 """ Defines the GraphQL Subscriptions """
 type Subscription {
     """ Subscribe a specific User """
-    user(userID : ID!) : User!
+    userUpdate(userID : ID!) : UserUpdateSubscriptionPayload!
 }
 
 """ Defines a user """
@@ -106,7 +106,7 @@ type UserUpdatePayload {
 type UserDeletePayload {
 
     """ the user """
-    user : User!
+    success : Boolean!
 }
 
 """ Defines the input to login a user """
@@ -127,4 +127,10 @@ type LoginPayload {
 
     """ the JWT """
     token : String!
+}
+
+type UserUpdateSubscriptionPayload {
+    event: String!
+    changedAttributes: [String!]
+    user: User
 }

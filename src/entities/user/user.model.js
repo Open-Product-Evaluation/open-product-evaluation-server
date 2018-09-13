@@ -1,17 +1,74 @@
-// TODO require mongoose model and mongodb
+const userSchema = require('./user.schema')
+const _ = require('underscore')
 
-module.exports.get = (find, limit, offset, sort, callback) => {
+module.exports = (db, eventEmitter) => {
+  const userModel = {}
+  const User = db.model('user', userSchema, 'user')
 
-}
+  const isEmailFree = async email => await User.count({ email }) === 0
 
-module.exports.insert = (object, callback) => {
+  userModel.get = async (find, limit, offset, sort) => {
+    try {
+      const users = await User.find(find).limit(limit).skip(offset).sort(sort)
+      if (users.length === 0) throw new Error('No User found.')
+      return users
+    } catch (e) {
+      throw e
+    }
+  }
 
-}
+  userModel.insert = async (object) => {
+    try {
+      if (await isEmailFree(object.email)) {
+        const user = await new User(object).save()
 
-module.exports.update = (id, data, callback) => {
+        eventEmitter.emit('User/Insert', user)
 
-}
+        return user
+      }
+      throw new Error('Email already in use. Could not create user.')
+    } catch (e) {
+      throw e
+    }
+  }
 
-module.exports.delete = (id, callback) => {
+  userModel.update = async (where, data) => {
+    try {
+      if (Object.prototype.hasOwnProperty.call(data, 'email') && !(await isEmailFree(data.email))) throw new Error('Email already in use. Could not update user.')
+      const oldUsers = await User.find(where)
+      const result = await User.updateMany(where, data)
+      if (result.nMatched === 0) throw new Error('No User found.')
+      if (result.nModified === 0) throw new Error('User update failed.')
 
+      const oldIds = oldUsers.map(user => user.id)
+      const updatedUsers = await User.find({ _id: { $in: oldIds } })
+
+      const sortObj =
+        updatedUsers.reduce((acc, user, index) => ({ ...acc, [user.id]: index }), {})
+      const oldUsersSorted = _.sortBy(oldUsers, user => sortObj[user.id])
+
+      eventEmitter.emit('User/Update', updatedUsers, oldUsersSorted)
+
+      return updatedUsers
+    } catch (e) {
+      throw e
+    }
+  }
+
+  userModel.delete = async (where) => {
+    try {
+      const deletedUsers = await User.find(where)
+      if (deletedUsers.length === 0) throw new Error('No User found.')
+      const result = await User.deleteMany(where)
+      if (result.n === 0) throw new Error('User deletion failed.')
+
+      eventEmitter.emit('User/Delete', deletedUsers)
+
+      return result
+    } catch (e) {
+      throw e
+    }
+  }
+
+  return Object.freeze(userModel)
 }

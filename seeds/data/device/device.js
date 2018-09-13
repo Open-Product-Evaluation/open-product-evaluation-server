@@ -15,7 +15,7 @@ const devices = [
     lastUpdate: new Date(),
     name: 'Forum Fernseher #2',
     context: getObjectID('context1'),
-    owners: null,
+    owners: [],
   },
 ]
 

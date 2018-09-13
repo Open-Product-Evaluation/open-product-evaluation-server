@@ -1,6 +1,6 @@
 """ Defines to GraphQL Queries """
 type Query {
-     """  Returns a list of Devices """
+    """  Returns a list of Devices """
     devices(userID : ID) : [Device!]
 
     """ Returns the specified Device """
@@ -22,7 +22,7 @@ type Mutation {
 """ Defines the GraphQL Subscriptions """
 type Subscription {
     """ Subscribe a specific Device """
-    device(deviceID : ID!) : Device!
+    deviceUpdate(deviceID : ID!) : DeviceUpdateSubscriptionPayload!
 }
 
 """ Defines a device """
@@ -85,5 +85,11 @@ type DeviceUpdatePayload {
 type DeviceDeletePayload {
 
     """ the device data """
-    device : Device!
+    success: Boolean!
+}
+
+type DeviceUpdateSubscriptionPayload {
+    event: String!
+    changedAttributes: [String!]
+    device: Device
 }

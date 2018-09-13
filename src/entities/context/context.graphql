@@ -6,6 +6,10 @@ type Query {
 
     """ Returns the specified Context """
     context(contextID : ID!) : Context!
+
+
+    """ Returns the specified state of a context """
+    state(contextID : ID!, key : String!) : State!
 }
 
 """ Defines the GraphQL Mutations """
@@ -20,12 +24,24 @@ type Mutation {
 
     """ Deletes the specified Context and returns the deleted Context data """
     deleteContext(contextID : ID!) : ContextDeletePayload!
+
+
+    """ Creates a State for a controller and returns the created State data """
+    createState(data : StateCreateInput!, contextID : ID!) : StateCreatePayload!
+
+
+    """ Updates the specified State and returns the updated State data """
+    updateState(data : StateUpdateInput!, contextID : ID!) : StateUpdatePayload!
+
+
+    """ Deletes the specified State and returns the deleted State data """
+    deleteState(data : StateDeleteInput!, contextID : ID!) : StateDeletePayload!
 }
 
 """ Defines the GraphQL Subscriptions """
 type Subscription {
     """ Subscribe a specific Context """
-    context(contextID : ID!) : Context!
+    contextUpdate(contextID : ID!) : ContextUpdateSubscriptionPayload!
 }
 
 """ Defines a Context representing a survey instance """
@@ -69,9 +85,6 @@ type ContextCreatePayload {
 
     """ the context """
     context : Context!
-
-    """ a token """
-    token : String!
 }
 
 """ Defines the input to  """
@@ -87,7 +100,7 @@ input ContextUpdateInput {
     name : String
 
     """ a list of owners """
-    owner : [ID!]
+    owners : [ID!]
 }
 
 """ Defines the payload to update a context """
@@ -101,5 +114,78 @@ type ContextUpdatePayload {
 type ContextDeletePayload {
 
     """ the context data """
-    context : Context!
+    success: Boolean!
+}
+
+""" Key-value pairs representing a client state """
+type State {
+
+    """ the key """
+    key : String!
+
+    """ the value """
+    value : String!
+}
+
+""" Defines the input to create a state """
+input StateCreateInput {
+
+    """ the key """
+    key : String!
+
+    """ the value """
+    value : String!
+}
+
+""" Defines the payload to create a state """
+type StateCreatePayload {
+
+    """ the state """
+    state : State!
+}
+
+""" Defines the input to update a state """
+input StateUpdateInput {
+
+    """ the key """
+    key : String!
+
+    """ the value """
+    value : String!
+}
+
+""" Defines the payload to update state """
+type StateUpdatePayload {
+
+    """ the state to update """
+    state : State!
+}
+
+""" Defines the input to delete a state """
+input StateDeleteInput {
+
+    """ the key """
+    key : String!
+}
+
+""" Defines the payload to delete state """
+type StateDeletePayload {
+
+    """ the state to delete """
+    success: Boolean!
+}
+
+""" Defines the payload to subscribing a context """
+type ContextUpdateSubscriptionPayload {
+    """ the event: UPDATE, INSERT or DELETE """
+    event: String!
+
+    """ changed attributes of this context """
+    changedAttributes: [String!]
+
+    """ key of changed state (only if a state got changed, inserted or delted) """
+    stateKey: String
+
+    """ The updated Context (not if event is DELETE) """
+    context: Context
 }
