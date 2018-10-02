@@ -24,6 +24,7 @@ Die `.env` Datei sieht dabei aktuell wie folgt aus:
 ```
 DEV_DB_NAME = 'openproductevaluation'
 NODE_ENV = 'dev'
+DEV_SECRET = 'enterYourTestKeyHere'
 ```
 
 Sofern Node.js und MongoDB auf den Standardports laufen müssen aktuell keine weiteren Werte geändert oder angegeben werden.
