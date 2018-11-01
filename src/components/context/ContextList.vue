@@ -18,7 +18,7 @@
           </div>
       </div>
 
-      <p class="text-center" v-if="contexts.length === 0">
+      <p class="text-center" v-if="contexts && contexts.length === 0">
         There are no contexts.
       </p>
 

@@ -91,7 +91,7 @@ const actions = {
   getContexts(context) {
     Context.getContexts()
       .then((data) => {
-        context.commit('setContexts', data.data.contexts);
+        context.commit('setContexts', data.data.contexts || []);
       });
   },
   updateContext(context, payload) {
