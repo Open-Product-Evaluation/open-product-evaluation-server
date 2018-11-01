@@ -429,7 +429,7 @@ const actions = {
   getSurveys(context) {
     Surveys.getSurveys()
       .then((data) => {
-        context.commit('setSurveys', data.data.surveys);
+        context.commit('setSurveys', data.data.surveys || []);
       });
   },
   getSurvey({ commit }, payload) {
