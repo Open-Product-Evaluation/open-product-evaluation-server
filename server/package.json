@@ -12,7 +12,14 @@
     "mongo": "mongod --logpath ./mongodb.log",
     "seed": "node seeds/seeder.js",
     "dev": "nodemon src/index.js",
+    "precommit": "lint-staged",
     "playground": "node playground/playground.js"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint ./",
+      "git add"
+    ]
   },
   "repository": {
     "type": "git",
