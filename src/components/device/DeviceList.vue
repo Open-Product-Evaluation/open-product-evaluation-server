@@ -60,6 +60,7 @@
 
                   <div class="col-6 col-sm-2 text-right">
                     <a v-bind:href="'/#/devices/edit/' + device.id"
+                        v-if="currentUser.isAdmin || isOwner(device.id, currentUser.id)"
                         class="btn btn-link">Edit</a>
                   </div>
                 </div>
@@ -95,6 +96,31 @@ export default {
     },
     currentUser() {
       return this.$store.getters.getCurrentUser.user;
+    },
+  },
+  methods: {
+    isOwner(deviceID, userID) {
+      const device = this.devices.find(d => d.id === deviceID);
+
+      if (!device) {
+        return false;
+      }
+
+      if (!device.owners) {
+        return false;
+      }
+
+      if (device.owners.length === 0) {
+        return false;
+      }
+
+      const user = device.owners.filter(o => o.id === userID);
+
+      if (user.length > 0) {
+        return true;
+      }
+
+      return false;
     },
   },
 };
