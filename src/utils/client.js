@@ -65,7 +65,7 @@ export default new ApolloClient({
   link: ApolloLink.from([
     requestLink,
     createUploadLink({
-      uri: 'http://localhost:3000',
+      uri: 'http://localhost:3000/graphql',
     }),
   ]),
   cache,

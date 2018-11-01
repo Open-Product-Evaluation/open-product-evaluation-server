@@ -48,14 +48,17 @@ dbLoader.connectDB().then(() => {
   })
 
   server.express.use(authMiddleware)
-  server.express.use('/voyager', middleware({ endpointUrl: '/' }))
+  server.express.use('/voyager', middleware({ endpointUrl: '/graphql' }))
   server.express.use('/static', express.static('static'))
 
   // load admin view into /admin and merge with /static
   server.express.use('/static', express.static(path.join(__dirname, '../../dist/static/')))
-  server.express.use('/admin', (req, res, next) => {
-    res.sendFile(path.join(__dirname, '../../dist/index.html'))
+  server.express.use('/', (req, res, next) => {
+    if (req.url === '/graphql') next()
+    else {
+      res.sendFile(path.join(__dirname, '../../dist/index.html'))
+    }
   })
 
-  server.start({ port: config.app.port }, () => console.log(`Server is running on ${config.app.rootURL}:${config.app.port}`))
+  server.start({ port: config.app.port, playground: false, endpoint: '/graphql' }, () => console.log(`Server is running on ${config.app.rootURL}:${config.app.port}`))
 })
