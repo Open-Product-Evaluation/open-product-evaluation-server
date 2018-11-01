@@ -1,7 +1,6 @@
 const { getMatchingId, createHashFromId } = require('../../utils/idStore')
 const config = require('../../../config')
 const { ADMIN } = require('../../utils/roles')
-const shortId = require('shortid')
 
 const getRequestedQuestionIfAuthorized = async (auth, questionId, models) => {
   const matchingQuestionId = getMatchingId(questionId)
@@ -284,10 +283,19 @@ module.exports = {
 
       const choiceData = getUpdateWithoutImageField(data)
 
+      const presentChoiceCodes = question.choices.map(choice => choice.code)
       if (data.code) {
-        const presentChoiceCodes = question.choices.map(choice => choice.code)
         if (presentChoiceCodes.includes(data.code)) throw new Error('Choice code is already taken.')
-      } else choiceData.code = shortId.generate()
+      } else {
+        const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
+        let index = 0
+        let isNotUnique = true
+        while (isNotUnique) {
+          choiceData.code = alphabet[index]
+          if (!presentChoiceCodes.includes(choiceData.code)) isNotUnique = false
+          index += 1
+        }
+      }
 
       let choice = await models.question.insertChoice(question.id, choiceData)
 

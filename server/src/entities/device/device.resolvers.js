@@ -17,7 +17,7 @@ module.exports = {
             return await models.device.get()
 
           case USER:
-            return await models.device.get({ owners: { $in: auth.id } })
+            return await models.device.get() // { owners: { $in: auth.id } })
 
           case DEVICE:
             if (keyExists(auth.device, 'context')

@@ -7,9 +7,13 @@ module.exports = (db, eventEmitter) => {
   const Question = db.model('question', questionSchema, 'question')
 
   const getAllQuestionTypesOfSurvey = async (surveyId) => {
-    const questions = await questionModel.get({ survey: surveyId })
-    const types = _.uniq((questions).map(question => question.type))
-    return types
+    try {
+      const questions = await questionModel.get({ survey: surveyId })
+      const types = _.uniq((questions).map(question => question.type))
+      return types
+    } catch (e) {
+      return []
+    }
   }
 
   const getAllQuestionTypesOfSurveysFromQuestions = async (questions) => {

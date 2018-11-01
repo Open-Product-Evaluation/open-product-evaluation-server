@@ -450,12 +450,12 @@ input ChoiceDescriptionUpdateInput {
     code : String
 }
 
-""" Defines payload to update an choice """
+""" Defines the payload to update an choice """
 type ChoiceDescriptionUpdatePayload {
     choice : ChoiceDescription!
 }
 
-""" Defines payload to delete an choice """
+""" Defines the payload to delete an choice """
 type ChoiceDescriptionDeletePayload {
     success : Boolean!
 }
