@@ -1,0 +1,192 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Device Admin should create device [Mutation] 1`] = `
+Object {
+  "context": null,
+  "name": "TestDevice",
+}
+`;
+
+exports[`Device Admin should return all devices [Query] 1`] = `
+Object {
+  "devices": Array [
+    Object {
+      "context": Object {
+        "id": "7df600774ceaa14488143c9d7877fd71662f4750c7c1c77aede7aa684d7c16f1",
+      },
+      "id": "13624f62a9b2a01b18d0ae062bf9ad978d0fe5265b9e059957f15c331ae11282",
+      "name": "Forum Fernseher",
+      "owners": Array [
+        Object {
+          "id": "bb4028c0657dfd7092f316dcbf5b006dce87217141e1b974441f040126acc142",
+        },
+      ],
+    },
+    Object {
+      "context": Object {
+        "id": "7df600774ceaa14488143c9d7877fd71662f4750c7c1c77aede7aa684d7c16f1",
+      },
+      "id": "9db9921b0d8132795cb5e77a90572fce5e94b90a8f44bd48417dff8cf7b66834",
+      "name": "Forum Tablet",
+      "owners": null,
+    },
+    Object {
+      "context": Object {
+        "id": "16613d16bf18d5674ad8c5d3ef071a3835ceb2b09fc3d5df592c0925f2e881f9",
+      },
+      "id": "3f4cd071e7f98511b24b448681003435e67b010c0fd271ebd494ac6537941088",
+      "name": "Mensa Kiosk",
+      "owners": null,
+    },
+    Object {
+      "context": Object {
+        "id": "16613d16bf18d5674ad8c5d3ef071a3835ceb2b09fc3d5df592c0925f2e881f9",
+      },
+      "id": "4ed5ac9fcf3638b1ef16c7800a3f6d7c5b4aa092b9afe1dca139c65e97f023f1",
+      "name": "Mensa Tablet",
+      "owners": Array [
+        Object {
+          "id": "bb9b812794666578a86254afca49deef281fd5caf4566db9915cf4d5ecde53dd",
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`Device Admin should return device not owned by User [Query] 1`] = `
+Object {
+  "device": Object {
+    "context": Object {
+      "id": "7df600774ceaa14488143c9d7877fd71662f4750c7c1c77aede7aa684d7c16f1",
+    },
+    "id": "9db9921b0d8132795cb5e77a90572fce5e94b90a8f44bd48417dff8cf7b66834",
+    "name": "Forum Tablet",
+    "owners": null,
+  },
+}
+`;
+
+exports[`Device Admin should return device owned by User [Query] 1`] = `
+Object {
+  "device": Object {
+    "context": Object {
+      "id": "16613d16bf18d5674ad8c5d3ef071a3835ceb2b09fc3d5df592c0925f2e881f9",
+    },
+    "id": "4ed5ac9fcf3638b1ef16c7800a3f6d7c5b4aa092b9afe1dca139c65e97f023f1",
+    "name": "Mensa Tablet",
+    "owners": Array [
+      Object {
+        "id": "bb9b812794666578a86254afca49deef281fd5caf4566db9915cf4d5ecde53dd",
+      },
+    ],
+  },
+}
+`;
+
+exports[`Device Admin should update device not owned by User [Mutation] 1`] = `
+Object {
+  "updateDevice": Object {
+    "device": Object {
+      "context": Object {
+        "id": "7df600774ceaa14488143c9d7877fd71662f4750c7c1c77aede7aa684d7c16f1",
+      },
+      "id": "9db9921b0d8132795cb5e77a90572fce5e94b90a8f44bd48417dff8cf7b66834",
+      "name": "RenamedTestDevice",
+      "owners": Array [
+        Object {
+          "id": "bb4028c0657dfd7092f316dcbf5b006dce87217141e1b974441f040126acc142",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`Device Admin should update device owned by User [Mutation] 1`] = `
+Object {
+  "updateDevice": Object {
+    "device": Object {
+      "context": Object {
+        "id": "7df600774ceaa14488143c9d7877fd71662f4750c7c1c77aede7aa684d7c16f1",
+      },
+      "id": "4ed5ac9fcf3638b1ef16c7800a3f6d7c5b4aa092b9afe1dca139c65e97f023f1",
+      "name": "RenamedTestDevice",
+      "owners": Array [
+        Object {
+          "id": "bb4028c0657dfd7092f316dcbf5b006dce87217141e1b974441f040126acc142",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`Device Anonym should create a Device [Mutation] 1`] = `
+Object {
+  "context": null,
+  "name": "TestDevice",
+}
+`;
+
+exports[`Device User should create device [Mutation] 1`] = `
+Object {
+  "context": null,
+  "name": "TestDevice",
+}
+`;
+
+exports[`Device User should return all devices [Query] 1`] = `
+Object {
+  "devices": Array [
+    Object {
+      "context": Object {
+        "id": "7df600774ceaa14488143c9d7877fd71662f4750c7c1c77aede7aa684d7c16f1",
+      },
+      "id": "13624f62a9b2a01b18d0ae062bf9ad978d0fe5265b9e059957f15c331ae11282",
+      "name": "Forum Fernseher",
+      "owners": Array [
+        Object {
+          "id": "bb4028c0657dfd7092f316dcbf5b006dce87217141e1b974441f040126acc142",
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`Device User should return device owned by User [Query] 1`] = `
+Object {
+  "device": Object {
+    "context": Object {
+      "id": "7df600774ceaa14488143c9d7877fd71662f4750c7c1c77aede7aa684d7c16f1",
+    },
+    "id": "13624f62a9b2a01b18d0ae062bf9ad978d0fe5265b9e059957f15c331ae11282",
+    "name": "Forum Fernseher",
+    "owners": Array [
+      Object {
+        "id": "bb4028c0657dfd7092f316dcbf5b006dce87217141e1b974441f040126acc142",
+      },
+    ],
+  },
+}
+`;
+
+exports[`Device User should update device owned by User [Mutation] 1`] = `
+Object {
+  "updateDevice": Object {
+    "device": Object {
+      "context": Object {
+        "id": "7df600774ceaa14488143c9d7877fd71662f4750c7c1c77aede7aa684d7c16f1",
+      },
+      "id": "13624f62a9b2a01b18d0ae062bf9ad978d0fe5265b9e059957f15c331ae11282",
+      "name": "RenamedTestDevice",
+      "owners": Array [
+        Object {
+          "id": "bb4028c0657dfd7092f316dcbf5b006dce87217141e1b974441f040126acc142",
+        },
+      ],
+    },
+  },
+}
+`;

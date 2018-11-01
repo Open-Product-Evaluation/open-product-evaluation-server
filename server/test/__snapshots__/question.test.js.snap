@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Question Admin should create question [Mutation] 1`] = `
+Object {
+  "createQuestion": Object {
+    "question": Object {
+      "__typename": "ChoiceQuestion",
+      "description": "TestDescription",
+      "items": null,
+      "type": "CHOICE",
+      "value": "0",
+    },
+  },
+}
+`;
+
+exports[`Question Admin should update question of survey not owned by User [Mutation] 1`] = `
+Object {
+  "updateQuestion": Object {
+    "question": Object {
+      "description": "NewTestDescription",
+    },
+  },
+}
+`;
+
+exports[`Question Admin should update question of survey owned by User [Mutation] 1`] = `
+Object {
+  "updateQuestion": Object {
+    "question": Object {
+      "description": "NewTestDescription",
+    },
+  },
+}
+`;
+
+exports[`Question User should create question [Mutation] 1`] = `
+Object {
+  "createQuestion": Object {
+    "question": Object {
+      "__typename": "ChoiceQuestion",
+      "description": "TestDescription",
+      "items": null,
+      "type": "CHOICE",
+      "value": "4",
+    },
+  },
+}
+`;
+
+exports[`Question User should update question of survey owned by User [Mutation] 1`] = `
+Object {
+  "updateQuestion": Object {
+    "question": Object {
+      "description": "NewTestDescription",
+    },
+  },
+}
+`;

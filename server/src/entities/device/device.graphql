@@ -1,0 +1,95 @@
+""" Defines to GraphQL Queries """
+type Query {
+    """  Returns a list of Devices """
+    devices(userID : ID) : [Device!]
+
+    """ Returns the specified Device """
+    device(deviceID : ID!) : Device!
+}
+
+""" Defines the GraphQL Mutations """
+type Mutation {
+    """ Creates a Device and returns the created Device data """
+    createDevice(data : DeviceCreateInput!) : DeviceCreatePayload!
+
+    """ Updates the specified Device and returns the Device data """
+    updateDevice(data : DeviceUpdateInput!, deviceID : ID!) : DeviceUpdatePayload!
+
+    """ Deletes the specified Device and returns the Device data """
+    deleteDevice(deviceID : ID!) : DeviceDeletePayload!
+}
+
+""" Defines the GraphQL Subscriptions """
+type Subscription {
+    """ Subscribe a specific Device """
+    deviceUpdate(deviceID : ID!) : DeviceUpdateSubscriptionPayload!
+}
+
+""" Defines a device """
+type Device {
+    """ Unique deviceID """
+    id : ID!
+
+    """ Date of creation """
+    creationDate : DateTime!
+
+    """ Date of last update """
+    lastUpdate : DateTime!
+
+    """ The name of the device """
+    name : String!
+
+    """ The context the device is connected to """
+    context : Context
+
+    """ The users the device is connected to """
+    owners : [User!]
+}
+
+""" Defines the input to create a device """
+input DeviceCreateInput {
+    """ the device name """
+    name : String
+}
+
+""" Defines the payload to create a device """
+type DeviceCreatePayload {
+    """ the created device """
+    device : Device!
+
+    """ the JWT-Token for that device """
+    token : String!
+}
+
+""" Defines the input to update a device """
+input DeviceUpdateInput {
+
+    """ the device name """
+    name : String
+
+    """ the associated context """
+    context : ID
+
+    """ a list of owners """
+    owners : [ID!]
+}
+
+""" Defines the payload to update a device """
+type DeviceUpdatePayload {
+
+    """ the device data """
+    device : Device!
+}
+
+""" Defines the payload to delete a device """
+type DeviceDeletePayload {
+
+    """ the device data """
+    success: Boolean!
+}
+
+type DeviceUpdateSubscriptionPayload {
+    event: String!
+    changedAttributes: [String!]
+    device: Device
+}

@@ -1,0 +1,11 @@
+/**
+ * Created by Dennis Dubbert on 03.09.18.
+ */
+
+module.exports = Object.freeze({
+  SUB_USER: 'USER_SUBSCRIPTION',
+  SUB_CONTEXT: 'CONTEXT_SUBSCRIPTION',
+  SUB_DEVICE: 'DEVICE_SUBSCRIPTION',
+  SUB_VOTES: 'VOTES_SUBSCRIPTION',
+  SUB_ANSWERS: 'ANSWER_SUBSCRIPTION',
+})

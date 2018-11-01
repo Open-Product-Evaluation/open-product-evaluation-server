@@ -1,0 +1,67 @@
+{
+  "name": "open-product-evaluation-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "jest -i",
+    "lint": "npm run lint:js",
+    "lint:js": "eslint ./",
+    "lint:fix": "eslint --fix .",
+    "mongo": "mongod --logpath ./mongodb.log",
+    "seed": "node seeds/seeder.js",
+    "dev": "nodemon src/index.js",
+    "precommit": "lint-staged",
+    "playground": "node playground/playground.js"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint ./",
+      "git add"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/th-koeln/open-product-evaluation-server.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/th-koeln/open-product-evaluation-server/issues"
+  },
+  "homepage": "https://github.com/th-koeln/open-product-evaluation-server#readme",
+  "dependencies": {
+    "dotenv": "6.0.0",
+    "express": "4.16.3",
+    "fs-extra": "6.0.1",
+    "graphql-iso-date": "^3.5.0",
+    "graphql-shield": "2.2.6",
+    "graphql-voyager": "^1.0.0-rc.15",
+    "graphql-yoga": "^1.14.7",
+    "jsonwebtoken": "8.3.0",
+    "merge-graphql-schemas": "^1.5.1",
+    "mongodb": "3.0.10",
+    "mongoose": "5.1.5",
+    "shortid": "2.2.8",
+    "underscore": "1.9.1"
+  },
+  "devDependencies": {
+    "chai": "4.1.2",
+    "eslint": "4.19.1",
+    "eslint-config-airbnb-base": "12.1.0",
+    "eslint-plugin-import": "2.12.0",
+    "husky": "0.14.3",
+    "jest": "23.6.0",
+    "lint-staged": "7.2.0",
+    "mongo-seeding": "3.0.0-0",
+    "nodemon": "1.17.5",
+    "supertest": "3.1.0",
+    "wait-on": "3.0.1"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "./test/setup.js",
+    "testRegex": "./test/.*.test.js$",
+    "verbose": true
+  }
+}

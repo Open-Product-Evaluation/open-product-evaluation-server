@@ -1,0 +1,142 @@
+""" Defines to GraphQL Queries """
+type Query {
+    """ Returns the votes of a survey, if the client is allowed to see them """
+    votes(surveyID : ID!) : [Vote!]
+}
+
+""" Defines to GraphQL Mutations """
+type Mutation {
+    """ Creates an Answer for a Question and a specific Device. Returns the created Answer data """
+    createAnswer(data : AnswerCreateInput!) : AnswerCreatePayload!
+}
+
+type Subscription {
+    answerUpdate(contextID: ID!, deviceID : ID!) : AnswerUpdateSubscriptionPayload!
+    newVote(surveyID : ID!) : NewVoteSubscriptionPayload!
+}
+
+""" Defines a single vote for a survey """
+type Vote {
+    """ Unique voteID """
+    id : ID!
+
+    """ Date of creation """
+    creationDate : DateTime!
+
+    """ The associated context """
+    context : ID
+
+    """ The associated device """
+    device : ID
+
+    """ A votes answers to all questions of the survey """
+    answers : [Answer!]!
+}
+
+""" Defines the answer for a question """
+interface Answer {
+    """ The question an answer belongs to """
+    question : ID!
+}
+
+""" Defines the answer for a Like type question """
+type LikeAnswer implements Answer {
+    """ The question an answer belongs to """
+    question : ID!
+
+    """ True = liked, False = skipped """
+    liked : Boolean
+}
+
+""" Defines the answer for a Like & Dislike type question """
+type LikeDislikeAnswer implements Answer {
+    """ The question an answer belongs to """
+    question : ID!
+
+    """ True = liked, False = disliked """
+    liked : Boolean
+}
+
+""" Defines the answer for a Choice type question """
+type ChoiceAnswer implements Answer {
+    """ The question an answer belongs to """
+    question : ID!
+
+    """ The id of the selected choice """
+    choice : ID
+}
+
+""" Defines the answer for a Regulator type question """
+type RegulatorAnswer implements Answer {
+    """ The question an answer belongs to """
+    question : ID!
+
+    """ The selected value of the regulator """
+    rating : Float
+
+    """ The normalized value of the regulator """
+    normalized : Float
+}
+
+""" Defines the answer for a Like type question """
+type RankingAnswer implements Answer {
+    """ The question an answer belongs to """
+    question : ID!
+
+    """ The codes of all the item sorted by ranking (first = best, last = worst) """
+    rankedItems : [ID!]
+}
+
+""" Defines the answer for a Favorite type question """
+type FavoriteAnswer implements Answer {
+    """ The question an answer belongs to """
+    question : ID!
+
+    """ The code of the favorite item """
+    favoriteItem : ID
+}
+
+""" Defines the input to create an answer """
+input AnswerCreateInput {
+    """ The question the answer belongs to """
+    questionID : ID!
+
+    """ The id of the chosen item (Favorite) """
+    favoriteItem : ID
+
+    """ A boolean if the Image was liked (LIKE / LIKEDISLIKE) """
+    liked : Boolean
+
+    """ The id of the chosen choice (CHOICE) """
+    choice : ID
+
+    """ A ranking (good to bad) of the items (RANKING) """
+    rankedItems : [ID!]
+
+    """ The chosen value / rating of a question (REGULATOR) """
+    rating : Float
+}
+
+""" Defines the payload to create an answer """
+type AnswerCreatePayload {
+    """ The created answer """
+    answer : Answer!
+
+    """ information if all answers were given to a survey """
+    voteCreated : Boolean!
+}
+
+""" Subscribe to all answers a device does in a specific context """
+type AnswerUpdateSubscriptionPayload {
+    event: String!
+    changedAttributes: [String!]
+    answer: Answer
+    deviceId: String!
+}
+
+""" Subscribe to all new votes of a survey """
+type NewVoteSubscriptionPayload {
+    event: String!
+    vote: Vote
+    surveyId: String!
+}

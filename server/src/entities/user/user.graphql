@@ -1,0 +1,139 @@
+""" Defines to GraphQL Queries """
+type Query {
+    """ Returns a list of Users """
+    users : [User!]
+
+
+    """ Returns the specified User """
+    user(userID : ID!) : User!
+}
+
+""" Defines the GraphQL Mutations """
+type Mutation {
+    """ Creates a User and returns the created User data and AuthToken """
+    createUser(data : UserCreateInput!) : UserCreatePayload!
+
+
+    """ Updates the specified User and returns the updated User data """
+    updateUser(data : UserUpdateInput!, userID : ID!) : UserUpdatePayload!
+
+
+    """ Deletes the specified User and returns the deleted User data """
+    deleteUser(userID : ID!) : UserDeletePayload!
+
+
+    """ Login and returns the Login data (User & AuthToken) """
+    login(data : LoginInput!) : LoginPayload!
+}
+
+""" Defines the GraphQL Subscriptions """
+type Subscription {
+    """ Subscribe a specific User """
+    userUpdate(userID : ID!) : UserUpdateSubscriptionPayload!
+}
+
+""" Defines a user """
+type User {
+    """ the userID """
+    id : ID!
+
+    """ the date of creation """
+    creationDate : DateTime!
+
+    """ the date of last update """
+    lastUpdate : DateTime!
+
+    """ the firstName """
+    firstName : String!
+
+    """ the lastName """
+    lastName : String!
+
+    """ the email """
+    email : String!
+}
+
+""" Defines the input to create a user """
+input UserCreateInput {
+
+    """ the firstname """
+    firstName : String!
+
+    """ the lastname """
+    lastName : String!
+
+    """ the email """
+    email : String!
+
+    """ the password """
+    password : String!
+}
+
+""" Define the payload to create a user """
+type UserCreatePayload {
+
+    """ the user """
+    user : User!
+
+    """ the JWT """
+    token : String!
+}
+
+""" Defines the input to update a user """
+input UserUpdateInput {
+
+    """ the firstname """
+    firstName : String
+
+    """ the lastname """
+    lastName : String
+
+    """ the email """
+    email : String
+
+    """ the password """
+    password : String
+
+    """ make user admin or revoke status """
+    isAdmin: Boolean
+}
+
+""" Defines the payload to update a user """
+type UserUpdatePayload {
+
+    """ the user """
+    user : User!
+}
+
+""" Defines the payload to delete a user """
+type UserDeletePayload {
+
+    """ the user """
+    success : Boolean!
+}
+
+""" Defines the input to login a user """
+input LoginInput {
+
+    """ the users email """
+    email : String!
+
+    """ the users password """
+    password : String!
+}
+
+""" Defines the payload to login """
+type LoginPayload {
+
+    """ the user """
+    user : User!
+
+    """ the JWT """
+    token : String!
+}
+
+type UserUpdateSubscriptionPayload {
+    event: String!
+    changedAttributes: [String!]
+    user: User
+}

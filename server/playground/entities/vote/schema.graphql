@@ -1,0 +1,161 @@
+type Mutation {
+    """ Creates an Answer for a Question and a specific Device. Returns the created Answer data """
+    createAnswer(data : AnswerCreateInput!) : AnswerCreatePayload!
+
+
+    """ Updates an Answer for a Question and a specific Device. Returns the updated Answer data """
+    updateAnswer(data : AnswerUpdateInput!, contextID : ID!, deviceID : ID!, questionID : ID!) : AnswerUpdatePayload!
+
+
+    """ Deletes an Answer for a Question and a specific Device. Returns the deleted Answer data """
+    deleteAnswer(contextID : ID!, deviceID : ID!, questionID : ID!) : AnswerDeletePayload!
+}
+
+type Subscription {
+    answers(deviceID : ID!) : Answer!
+    votes(surveyID : ID!) : Vote!
+}
+
+""" Defines a single vote for a survey """
+type Vote {
+    """ Unique voteID """
+    id : ID!
+
+    """ Date of creation """
+    creationDate : DateTime!
+
+    """ Date of last update """
+    lastUpdate : DateTime!
+
+    """ The controller a vote was send by """
+    context : ID
+
+    """ A votes answers to all questions of the survey """
+    answers : [Answer!]!
+}
+
+""" Defines the answer for a question """
+interface Answer {
+    """ The question an answer belongs to """
+    question : ID!
+}
+
+""" Defines the answer for a Like type question """
+type LikeAnswer implements Answer {
+    """ The question an answer belongs to """
+    question : ID!
+
+    """ True = liked, False = skipped """
+    liked : Boolean
+}
+
+""" Defines the answer for a Like & Dislike type question """
+type LikeDislikeAnswer implements Answer {
+    """ The question an answer belongs to """
+    question : ID!
+
+    """ True = liked, False = disliked """
+    liked : Boolean
+}
+
+""" Defines the answer for a Choice type question """
+type ChoiceAnswer implements Answer {
+    """ The question an answer belongs to """
+    question : ID!
+
+    """ The code of the selected choice """
+    choiceCode : String
+}
+
+""" Defines the answer for a Regulator type question """
+type RegulatorAnswer implements Answer {
+    """ The question an answer belongs to """
+    question : ID!
+
+    """ The selected value of the regulator """
+    rating : Float
+
+    """ The normalized value of the regulator """
+    normalized : Float
+}
+
+""" Defines the answer for a Like type question """
+type RankingAnswer implements Answer {
+    """ The question an answer belongs to """
+    question : ID!
+
+    """ The codes of all the item sorted by ranking (first = best, last = worst) """
+    rankedImages : [ID!]
+}
+
+""" Defines the answer for a Favorite type question """
+type FavoriteAnswer implements Answer {
+    """ The question an answer belongs to """
+    question : ID!
+
+    """ The code of the favorite item """
+    favoriteImage : ID
+}
+
+""" Defines the input to create an answer """
+input AnswerCreateInput {
+    """ The context in which the vote is created in """
+    contextID : ID!
+
+    """ The device creating the answer """
+    deviceID : ID!
+
+    """ The question the answer belongs to """
+    questionID : ID!
+
+    """ The id of the chosen Image (Favorite) """
+    favoriteImage : ID
+
+    """ A boolean if the Image was liked (LIKE / LIKEDISLIKE) """
+    liked : Boolean
+
+    """ The code of the chosen choice (CHOICE) """
+    choiceCode : String
+
+    """ A ranking (good to bad) of the images (RANKING) """
+    rankedImages : [String!]
+
+    """ The chosen value / rating of a question (REGULATOR) """
+    rating : Float
+}
+
+""" Defines the payload to create an answer """
+type AnswerCreatePayload {
+    """ The created answer """
+    answer : Answer!
+}
+
+""" Defines the input to update an Answer """
+input AnswerUpdateInput {
+    """ The id of the chosen Image (Favorite) """
+    favoriteImage : ID
+
+    """ A boolean if the Image was liked (LIKE / LIKEDISLIKE) """
+    liked : Boolean
+
+    """ The code of the chosen choice (CHOICE) """
+    choiceCode : String
+
+    """ A ranking (good to bad) of the images (RANKING) """
+    rankedImages : [String!]
+
+    """ The chosen value / rating of a question (REGULATOR) """
+    rating : Float
+}
+
+""" Defines the payload to update an answer """
+type AnswerUpdatePayload {
+    """ The updated answer """
+    answer : Answer!
+}
+
+""" Defines the payload to delete an answer """
+type AnswerDeletePayload {
+    """ The deleted answer """
+    answer : Answer!
+}

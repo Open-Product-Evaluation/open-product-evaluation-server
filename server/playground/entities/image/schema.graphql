@@ -1,0 +1,26 @@
+""" Defines the data representing an image """
+type ImageData{
+    """ Unique imageID """
+    id : ID!
+
+    """ Date of creation """
+    creationDate : DateTime!
+
+    """ Date of last update """
+    lastUpdate : DateTime!
+
+    """ The name of the image """
+    name : String!
+
+    """ The mimetype of the image """
+    type : String!
+
+    """ The hash identifying the image """
+    hash : String!
+
+    """ Tags this image is represented through """
+    tags : [String!]!
+
+    """ URL to download the Image """
+    url : String!
+}

@@ -1,0 +1,230 @@
+""" Defines attributes all questions need """
+interface Question {
+    """ Unique questionID """
+    id : ID!
+
+    """ Date of creation """
+    creationDate : DateTime!
+
+    """ Date of last update """
+    lastUpdate : DateTime!
+
+    """ The type of the question """
+    type : QuestionType!
+
+    """ Items / Images that need to be shown """
+    items : [Item!]
+
+    """ The question text / the question itself """
+    value : String!
+
+    """ Optional: A description / extension of the question (help text) """
+    description : String
+}
+
+""" Defines a question of type Like """
+type LikeQuestion implements Question {
+    """ Unique questionID """
+    id : ID!
+
+    """ Date of creation """
+    creationDate : DateTime!
+
+    """ Date of last update """
+    lastUpdate : DateTime!
+
+    """ The type of the question """
+    type : QuestionType!
+
+    """ Items / Images that need to be shown """
+    items : [Item!]
+
+    """ The question text / the question itself """
+    value : String!
+
+    """ Optional: A description / extension of the question (help text) """
+    description : String
+
+    """ Default Like-Icon """
+    likeIcon : ImageData!
+}
+
+""" Defines a question of type Like & Dislike """
+type LikeDislikeQuestion implements Question {
+    """ Unique questionID """
+    id : ID!
+
+    """ Date of creation """
+    creationDate : DateTime!
+
+    """ Date of last update """
+    lastUpdate : DateTime!
+
+    """ The type of the question """
+    type : QuestionType!
+
+    """ Items / Images that need to be shown """
+    items : [Item!]
+
+    """ The question text / the question itself """
+    value : String!
+
+    """ Optional: A description / extension of the question (help text) """
+    description : String
+
+    """ Default like icon """
+    likeIcon : ImageData!
+
+    """ Default dislike icon """
+    dislikeIcon : ImageData!
+}
+
+""" Defines a question with fixed set of choices """
+type ChoiceQuestion implements Question {
+    """ Unique questionID """
+    id : ID!
+
+    """ Date of creation """
+    creationDate : DateTime!
+
+    """ Date of last update """
+    lastUpdate : DateTime!
+
+    """ The type of the question """
+    type : QuestionType!
+
+    """ Items / Images that need to be shown """
+    items : [Item!]
+
+    """ The question text / the question itself """
+    value : String!
+
+    """ Optional: A description / extension of the question (help text) """
+    description : String
+
+    """ The descriptions of all possible choices """
+    choices : [ChoiceDescription!]!
+
+    """ Optional: The code of the choice that is selected by default """
+    default : String
+}
+
+""" The description of a choice """
+type ChoiceDescription {
+    """ The label of a choice """
+    label : String!
+
+    """ Optional : The image that has to be shown for a choice """
+    image : ImageData
+
+    """ Unique String representing each choice """
+    code : String!
+}
+
+""" Defines a question of type Like """
+type RegulatorQuestion implements Question {
+    """ Unique questionID """
+    id : ID!
+
+    """ Date of creation """
+    creationDate : DateTime!
+
+    """ Date of last update """
+    lastUpdate : DateTime!
+
+    """ The type of the question """
+    type : QuestionType!
+
+    """ Items / Images that need to be shown """
+    items : [Item!]
+
+    """ The question text / the question itself """
+    value : String!
+
+    """ Optional: A description / extension of the question (help text) """
+    description : String
+
+    """ The labels that need to be visualized (only for visual feedback and orientation) """
+    labels : [Label!]!
+
+    """ The distance between every selectable step of the regulator """
+    stepSize : Float!
+
+    """ The minimum value for the regulator """
+    min : Float!
+
+    """ The maximum value for the regulator """
+    max : Float!
+
+    """ The default value the regulator has to start at """
+    default : Float!
+}
+
+""" The description of steps that are important for orientation / understanding (distributed in a linear way) """
+type Label {
+    """ The text of a label """
+    text : String!
+
+    """ The image that has to be shown for a label """
+    image : ImageData
+
+    """ The value a label belongs to (has to be placed at) """
+    value : Float!
+}
+
+""" Defines a question in which multiple images need to get ranked """
+type RankingQuestion implements Question {
+    """ Unique questionID """
+    id : ID!
+
+    """ Date of creation """
+    creationDate : DateTime!
+
+    """ Date of last update """
+    lastUpdate : DateTime!
+
+    """ The type of the question """
+    type : QuestionType!
+
+    """ The question text / the question itself """
+    value : String!
+
+    """ Optional: A description / extension of the question (help text) """
+    description : String
+
+    """ Items / Images that need to be shown """
+    items : [Item!]!
+}
+
+""" Defines a question where a single image of a set is selected as favorite """
+type FavoriteQuestion implements Question {
+    """ Unique questionID """
+    id : ID!
+
+    """ Date of creation """
+    creationDate : DateTime!
+
+    """ Date of last update """
+    lastUpdate : DateTime!
+
+    """ The type of the question """
+    type : QuestionType!
+
+    """ The question text / the question itself """
+    value : String!
+
+    """ Optional: A description / extension of the question (help text) """
+    description : String
+
+    """ Items / Images that need to be shown """
+    items : [Item!]!
+}
+
+""" Defines the data of an item """
+type Item {
+    """ The ImageData of the image that needs to be shown """
+    image : ImageData!
+
+    """ The Label that describes the image depending on the context """
+    label : String!
+}

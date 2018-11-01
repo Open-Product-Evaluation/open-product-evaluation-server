@@ -1,0 +1,81 @@
+type Query {
+    """ Returns the specified Device """
+    device(deviceID : ID!) : Device!
+}
+
+type Mutation {
+    """ Creates a Device and returns the created Device data """
+    createDevice(data : DeviceCreateInput!) : DeviceCreatePayload!
+
+
+    """ Updates the specified Device and returns the updated Device data """
+    updateDevice(data : DeviceUpdateInput!, deviceID : ID!) : DeviceUpdatePayload!
+
+
+    """ Deletes the specified Device and returns the deleted Device data """
+    deleteDevice(deviceID : ID!) : DeviceDeletePayload!
+}
+
+type Subscription {
+    """ Subscribe a specific Device """
+    device(deviceID : ID!) : Device!
+}
+
+type Device {
+    """ Unique deviceID """
+    id : ID!
+
+    """ Date of creation """
+    creationDate : DateTime!
+
+    """ Date of last update """
+    lastUpdate : DateTime!
+
+    """ The name of the device """
+    name : String!
+
+    """ The controller the device is connected to """
+    context : Context
+}
+
+""" Defines the input to create a device """
+input DeviceCreateInput {
+    """ the device name """
+    name : String
+}
+
+""" Defines the payload to create a device """
+type DeviceCreatePayload {
+    """ the created device """
+    device : Device!
+
+    """ the JWT-Token for that device """
+    token : String!
+}
+
+""" Defines the input to update a device """
+input DeviceUpdateInput {
+
+    """ the device name """
+    name : String
+
+    """ the associated context """
+    context : ID
+
+    """ a list of owners """
+    owners : [ID!]
+}
+
+""" Defines the payload to update a device """
+type DeviceUpdatePayload {
+
+    """ the device data """
+    device : Device!
+}
+
+""" Defines the payload to delete a device """
+type DeviceDeletePayload {
+
+    """ the device data """
+    device : Device!
+}
