@@ -33,7 +33,6 @@ const mutations = {
     _state.currentSurvey = payload;
   },
   setSurveys(_state, surveys) {
-    console.log(surveys);
     // eslint-disable-next-line
     _state.surveys = surveys;
   },

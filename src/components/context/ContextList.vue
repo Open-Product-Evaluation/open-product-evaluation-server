@@ -1,5 +1,7 @@
 <template>
-  <div>
+  <div class="card">
+    <div class="card-body">
+
       <div class="row">
           <div class="col-sm-8">
             <div class="btn-group form-group">
@@ -16,19 +18,22 @@
           </div>
       </div>
 
+      <p class="text-center" v-if="contexts.length === 0">
+        There are no contexts.
+      </p>
+
       <p class="alert alert-info"
         v-if="filteredContexts.length === 0 && contexts.length !== 0">
         This search returned no results.
       </p>
 
-      <div class="row">
-        <div class="col-4 d-flex align-items-stretch" v-for="context in filteredContexts" :key="context.id">
-
-      <div class="card context">
+      <div class="card context" v-for="context in filteredContexts" :key="context.id">
         <div class="card-header">
           {{ context.name }}
         </div>
 
+        <div class="row">
+          <div class="col-12 col-sm-8">
             <div class="card-body">
               <strong class="card-title" v-if="context.activeSurvey">Active Survey</strong>
               <p class="card-text" v-if="context.activeSurvey">
@@ -38,23 +43,27 @@
               <p class="card-text" v-if="context.activeQuestion">
                 {{ context.activeQuestion.value }}
               </p>
-              <strong class="card-title" v-if="context && context.devices && context.devices > 0">Devices</strong>
-              <ul class="card-text" v-if="context && context.devices && context.devices > 0">
+              <strong class="card-title" v-if="context.devices">Devices</strong>
+              <ul class="card-text">
                   <li :key="device.id" v-for="device in context.devices" v-if="context.devices">
                     {{ device.name }}
                   </li>
+
               </ul>
-              <div class="card-links" style="align-items: flex-end;">
+            </div>
+          </div>
+          <div class="col-12 col-sm-4 options">
+            <div class="card-body">
                 <a v-bind:href="'/#/context/edit/' + context.id" class="card-link">Edit</a>
                 <a href="#"
                   class="card-link"
                   v-on:click="deleteContext($event, context.id)">Remove</a>
-              </div>
+            </div>
+          </div>
         </div>
       </div>
-      </div>
     </div>
-    </div>
+  </div>
 </template>
 
 <script>
@@ -97,14 +106,5 @@ export default {
     .options {
       border-left: none;
     }
-  }
-
-  .card-body {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .card-links:last-child {
-    margin-top: auto;
   }
 </style>
