@@ -28,6 +28,10 @@ const getters = {
 };
 
 const mutations = {
+  clearVotes(_state) {
+    // eslint-disable-next-line
+    _state.currentSurvey = { ..._state.currentSurvey, votes: [] };
+  },
   currentSurvey(_state, payload) {
     // eslint-disable-next-line
     _state.currentSurvey = payload;
@@ -459,10 +463,13 @@ const actions = {
   },
   createLabel({ commit }, payload) {
     Questions.createLabel(payload.question.id)
-      .then(data => commit('createLabel', {
-        id: payload.question.id,
-        label: data.data.createLabel.label,
-      }));
+      .then((data) => {
+        commit('clearVotes');
+        commit('createLabel', {
+          id: payload.question.id,
+          label: data.data.createLabel.label,
+        });
+      });
   },
   updateLabel({ commit }, payload) {
     Questions.updateLabel(
@@ -470,38 +477,62 @@ const actions = {
       payload.label.id,
       payload.label.label,
       payload.label.value,
-    ).then(() => commit('updateLabel', payload));
+    ).then(() => {
+      commit('clearVotes');
+      commit('updateLabel', payload);
+    });
   },
   deleteLabel({ commit }, payload) {
     Questions.deleteLabel(payload.question.id, payload.label.id)
-      .then(() => commit('deleteLabel', payload));
+      .then(() => {
+        commit('clearVotes');
+        commit('deleteLabel', payload);
+      });
   },
   createChoice({ commit }, payload) {
     Questions.createChoice(payload.question.id)
-      .then(data => commit('createChoice', {
-        id: payload.question.id,
-        choice: data.data.createChoice.choice,
-      }));
+      .then((data) => {
+        commit('clearVotes');
+        commit('createChoice', {
+          id: payload.question.id,
+          choice: data.data.createChoice.choice,
+        });
+      });
   },
   updateChoice({ commit }, payload) {
     Questions.updateChoice(payload.question.id, payload.choice.id, payload.choice.label)
-      .then(() => commit('updateChoice', payload));
+      .then(() => {
+        commit('clearVotes');
+        commit('updateChoice', payload);
+      });
   },
   deleteChoice({ commit }, payload) {
     Questions.deleteChoice(payload.question.id, payload.choice.id)
-      .then(() => commit('deleteChoice', payload));
+      .then(() => {
+        commit('clearVotes');
+        commit('deleteChoice', payload);
+      });
   },
   updateItem({ commit }, payload) {
     Questions.updateItem(payload.question.id, payload.item.id, payload.item.label)
-      .then(() => commit('updateItem', payload));
+      .then(() => {
+        commit('clearVotes');
+        commit('updateItem', payload);
+      });
   },
   deleteItem({ commit }, payload) {
     Questions.deleteItem(payload.question.id, payload.item.id)
-      .then(() => commit('deleteItem', payload));
+      .then(() => {
+        commit('clearVotes');
+        commit('deleteItem', payload);
+      });
   },
   createQuestion({ commit }, payload) {
     Questions.createQuestion(payload.surveyID)
-      .then(data => commit('createQuestion', data.data.createQuestion.question));
+      .then((data) => {
+        commit('clearVotes');
+        commit('createQuestion', data.data.createQuestion.question);
+      });
   },
   updateQuestion({ commit }, payload) {
     Questions.updateQuestion(
@@ -509,7 +540,10 @@ const actions = {
       payload.question.value,
       payload.question.description,
       payload.question.type,
-    ).then(data => commit('updateQuestion', data.data.updateQuestion.question));
+    ).then((data) => {
+      commit('clearVotes');
+      commit('updateQuestion', data.data.updateQuestion.question);
+    });
   },
   updateRegulatorQuestion({ commit }, payload) {
     Questions.updateRegulatorQuestion(
@@ -518,7 +552,10 @@ const actions = {
       payload.question.max,
       payload.question.stepSize,
       payload.question.default,
-    ).then(data => commit('updateRegulatorQuestion', data.data.updateQuestion.question));
+    ).then((data) => {
+      commit('clearVotes');
+      commit('updateRegulatorQuestion', data.data.updateQuestion.question);
+    });
   },
   changeQuestionType({ commit }, payload) {
     Questions.updateQuestion(
@@ -526,23 +563,33 @@ const actions = {
       payload.question.value,
       payload.question.description,
       payload.question.type,
-    ).then(data => commit('updateQuestion', data.data.updateQuestion.question));
+    ).then((data) => {
+      commit('clearVotes');
+      commit('updateQuestion', data.data.updateQuestion.question);
+    });
   },
   // changeQuestionType: ({ commit }, payload) => commit('changeQuestionType', payload),
   deleteQuestion({ commit }, payload) {
     Questions.deleteQuestion(payload.questionID)
-      .then(() => commit('deleteQuestion', payload));
+      .then(() => {
+        commit('clearVotes');
+        commit('deleteQuestion', payload);
+      });
   },
   createItem({ commit }, payload) {
     Questions.createItem(payload.question.id)
-      .then(data => commit('createItem', {
-        id: payload.question.id,
-        item: data.data.createItem.item,
-      }));
+      .then((data) => {
+        commit('clearVotes');
+        commit('createItem', {
+          id: payload.question.id,
+          item: data.data.createItem.item,
+        });
+      });
   },
   createImage({ commit }, payload) {
     Surveys.uploadImage(payload.id, payload.file, payload.tags)
       .then((data) => {
+        commit('clearVotes');
         commit('createImage', {
           surveyID: payload.id,
           image: data.data.createBonusImage.image,
@@ -552,40 +599,49 @@ const actions = {
   },
   deleteImage({ commit }, payload) {
     Surveys.deleteImage(payload.id)
-      .then(() => commit('deleteImage', payload.id));
+      .then(() => {
+        commit('clearVotes');
+        commit('deleteImage', payload.id);
+      });
   },
   uploadChoiceImage({ commit }, payload) {
     Questions.uploadChoiceImage(
       payload.questionID,
       payload.choiceID,
       payload.file,
-    ).then(data => commit('uploadChoiceImage', {
-      questionID: payload.questionID,
-      choice: data.data.updateChoice.choice,
-    }),
-    );
+    ).then((data) => {
+      commit('clearVotes');
+      commit('uploadChoiceImage', {
+        questionID: payload.questionID,
+        choice: data.data.updateChoice.choice,
+      });
+    });
   },
   uploadItemImage({ commit }, payload) {
     Questions.uploadItemImage(
       payload.questionID,
       payload.itemID,
       payload.file,
-    ).then(data => commit('uploadItemImage', {
-      questionID: payload.questionID,
-      item: data.data.updateItem.item,
-    }),
-    );
+    ).then((data) => {
+      commit('clearVotes');
+      commit('uploadItemImage', {
+        questionID: payload.questionID,
+        item: data.data.updateItem.item,
+      });
+    });
   },
   uploadLabelImage({ commit }, payload) {
     Questions.uploadLabelImage(
       payload.questionID,
       payload.labelID,
       payload.file,
-    ).then(data => commit('uploadLabelImage', {
-      questionID: payload.questionID,
-      label: data.data.updateLabel.label,
-    }),
-    );
+    ).then((data) => {
+      commit('clearVotes');
+      commit('uploadLabelImage', {
+        questionID: payload.questionID,
+        label: data.data.updateLabel.label,
+      });
+    });
   },
 };
 
