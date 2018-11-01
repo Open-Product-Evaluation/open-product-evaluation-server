@@ -40,6 +40,7 @@ const register = (firstname, lastname, email, password) => client.mutate(
           email
           firstName
           lastName
+          isAdmin
         }
         token
       }
