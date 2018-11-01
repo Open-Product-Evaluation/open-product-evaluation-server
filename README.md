@@ -1,30 +1,30 @@
 # Open Product Evaluation Server [![Build Status](https://travis-ci.org/th-koeln/open-product-evaluation-server.svg?branch=master)](https://travis-ci.org/th-koeln/open-product-evaluation-server)
 
-Installation:
-* Repository in ein beliebiges Verzeichnis clonen
-* Im Projektordner `npm install` über die Konsole ausführen
-* Um den Playground / Voyager sehen zu können `npm run playground` über die Konsole ausführen
+Open Product Evaluation Server is a service which provides an API to evaluate different products e.g. apps or websites.
+The difference to other survey apps is the focus on fast and easy reviews of your products which results in different types of questions like google forms or other survey apps usually provide.
 
-Aktuell gibt es zwei Möglichkeiten um die Datenstrukturen zu betrachten:
+Install OPE:
 
-* http://localhost:4000 - Der Playground
-* http://localhost:4000/voyager - Darstellung der Struktur über Voyager
+1. Clone project
+2. Run `npm install` in root folder
+3. Run `npm run build` in root folder
+3. Run `npm install` in `/server`
+4. Run MongoDB with `npm run mongo` in `/server`
+5. Run GraphQL Server with `npm start` in `/server`
+6. Server now runs on http://localhost:3000
 
-Für das Backend-Team wird ganz normal der Befehl `npm run dev` verwendet. Der Playground läuft hier, wie auch der eigentliche Server, auf Port 3000.
+You can find the [GraphQL Playground](https://github.com/graphcool/graphql-playground) on http://localhost:3000/playground.
+
+You can find [Voyager](https://github.com/graphcool/graphql-playground) on http://localhost:3000/voyager.
 
 ## Developer Setup
 
-Zu Beginn müssen einige Konfigurationen vorgenommen werden um mit dem Projekt zu arbeiten.
-Dazu muss eine `.env` Datei im Hauptverzeichnis erstellt werden. Mit Hilfe dieser Datei können Umgebungsvariablen 
-für Node.js definiert werden. Die Datei `config.js` übernimmt diese Daten, daher muss diese Datei nur angepasst werden,
-wenn neue Variablen auftauchen, oder die Standardwerte geändert werden sollen.
+To add to the development of OPE you may need to change a few settings in your local repository. If you do not use the default settings you need to create a `.env` file in the `/server` directory which holds the environment variables needed. The `config.js` file in the `/server` directory uses these variables or provides default settings if a `.env` can not be found.
 
-Die `.env` Datei sieht dabei aktuell wie folgt aus:
+A `.env` file looks like this:
 
 ```
 DEV_DB_NAME = 'openproductevaluation'
 NODE_ENV = 'dev'
+...
 ```
-
-Sofern Node.js und MongoDB auf den Standardports laufen müssen aktuell keine weiteren Werte geändert oder angegeben werden.
-So kann jeder Entwickler seine eigene Konfiguration angeben ohne die Konfiguration des Projekts zu ändern.
