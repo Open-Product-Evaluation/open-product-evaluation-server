@@ -55,10 +55,17 @@ dbLoader.connectDB().then(() => {
   server.express.use('/static', express.static(path.join(__dirname, '../../dist/static/')))
   server.express.use('/', (req, res, next) => {
     if (req.url === '/graphql') next()
+    else if (req.url === '/playground') next()
     else {
       res.sendFile(path.join(__dirname, '../../dist/index.html'))
     }
   })
 
-  server.start({ port: config.app.port, playground: false, endpoint: '/graphql' }, () => console.log(`Server is running on ${config.app.rootURL}:${config.app.port}`))
+  const options = {
+    port: config.app.port,
+    playground: config.app.playgroundEndpoint,
+    endpoint: config.app.graphqlEndpoint,
+  }
+
+  server.start(options, () => console.log(`Server is running on ${config.app.rootURL}:${config.app.port}`))
 })

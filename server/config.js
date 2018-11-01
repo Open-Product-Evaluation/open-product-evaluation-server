@@ -14,6 +14,8 @@ const dev = {
     defaultFolder: process.env.DEFAULT_FOLDER || 'static/images/default',
     deviceCacheTime: process.env.DEVICE_CACHE_TIME || 1000 * 60 * 30,
     questionCacheTime: process.env.QUESTION_CACHE_TIME || 1000 * 60,
+    playgroundEndpoint: process.env.PLAYGROUND_ENDPOINT || '/playground',
+    graphqlEndpoint: process.env.GRAPHQL_ENDPOINT || '/graphql',
   },
   db: {
     host: process.env.DEV_DB_HOST || 'localhost',
