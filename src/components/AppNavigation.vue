@@ -18,14 +18,36 @@
 
         <!-- Menu Items -->
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active" v-for="link in links" :key="link.title">
+          <li class="nav-item active">
             <a class="nav-link"
-              v-bind:href="link.url"
-              @click="showNavigation = !showNavigation;">{{ link.title }}</a>
+              href="/#/survey"
+              @click="showNavigation = !showNavigation;">
+              Surveys
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link"
+              href="/#/context"
+              @click="showNavigation = !showNavigation;">
+              Contexts
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link"
+              href="/#/devices"
+              @click="showNavigation = !showNavigation;">
+              Devices
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link"
+              href="/#/user"
+              v-if="currentUser.isAdmin"
+              @click="showNavigation = !showNavigation;">
+              Users
+            </a>
           </li>
         </ul>
-
-
         <!-- User Items -->
         <ul class="navbar-nav my-2 my-lg-0">
           <li class="nav-item dropdown">
@@ -59,24 +81,6 @@ export default {
   name: 'NavBar',
   data() {
     return {
-      links: [
-        {
-          title: 'Surveys',
-          url: '/#/survey',
-        },
-        {
-          title: 'Contexts',
-          url: '/#/context',
-        },
-        {
-          title: 'Devices',
-          url: '/#/devices',
-        },
-        {
-          title: 'Users',
-          url: '/#/user',
-        },
-      ],
       showNavigation: false,
       showDropdown: false,
     };
@@ -97,7 +101,7 @@ export default {
     },
   },
   computed: {
-    user() {
+    currentUser() {
       return this.$store.getters.getCurrentUser;
     },
   },
