@@ -11,6 +11,12 @@
     "precommit": "npm run lint",
     "build": "node build/build.js"
   },
+  "lint-staged": {
+    "*.{js, vue}": [
+      "eslint ./",
+      "git add"
+    ]
+  },
   "dependencies": {
     "@johmun/vue-tags-input": "1.5.5",
     "apollo-boost": "0.1.10",
