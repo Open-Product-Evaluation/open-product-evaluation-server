@@ -229,20 +229,17 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-
-.idea/
 # End of https://www.gitignore.io/api/node,linux,macos,windows,phpstorm,webstorm
 
+# ignore mongodb stuff
 mongodb.log
-
 mongodb/
 
-static/images/*
-!static/images/default
+# ignore image directory, except default images
+server/static/images/*
+server/!static/images/default
 
-#VSCode
-.vscode/
-
+# other stuff
 .DS_Store
 node_modules/
 /dist/
@@ -252,6 +249,7 @@ yarn-error.log*
 /test/unit/coverage/
 
 # Editor directories and files
+.idea/
 .idea
 .vscode
 *.suo
