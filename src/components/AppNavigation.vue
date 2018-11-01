@@ -42,7 +42,7 @@
           <li class="nav-item active">
             <a class="nav-link"
               href="/#/user"
-              v-if="currentUser.user.isAdmin"
+              v-if="currentUser.isAdmin"
               @click="showNavigation = !showNavigation;">
               Users
             </a>
@@ -56,7 +56,7 @@
               href="#"
               @click="toggleNavigation"
               :class="{'show': showDropdown}" >
-              {{ currentUser.user.firstName}} {{currentUser.user.lastName}}
+              {{ currentUser.firstName}} {{currentUser.lastName}}
               <span class="caret"></span>
             </a>
 
@@ -103,7 +103,7 @@ export default {
   },
   computed: {
     currentUser() {
-      return this.$store.getters.getCurrentUser;
+      return this.$store.getters.getCurrentUser.user;
     },
   },
 };

@@ -13,6 +13,7 @@ const getUsers = () => client.query(
         firstName
         lastName
         email
+        isAdmin
       }
     }`,
   },
@@ -29,6 +30,7 @@ const getUser = userID => client.query(
         firstName
         lastName
         email
+        isAdmin
       }
     }`,
   },
@@ -53,6 +55,7 @@ const createUser = (firstname, lastname, email, password) => client.mutate(
           email
           firstName
           lastName
+          isAdmin
         }
         token
       }
@@ -85,6 +88,7 @@ const updateUser = (userID, firstname, lastname, email, password = undefined) =>
             firstName
             lastName
             email
+            isAdmin
           }
         }
       }`,

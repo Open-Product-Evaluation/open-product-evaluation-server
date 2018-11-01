@@ -14,7 +14,7 @@ const mutations = {
 
   setCurrentUser(_state, payload) {
     // eslint-disable-next-line
-    _state.currentUser = {...payload};
+    _state.currentUser.user = {...payload};
   },
   login(_state, payload) {
     // eslint-disable-next-line
