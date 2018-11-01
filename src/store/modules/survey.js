@@ -253,7 +253,13 @@ const mutations = {
   createQuestion(_state, payload) {
     const survey = { ..._state.currentSurvey };
 
-    const questions = [...survey.questions, payload];
+    let questions = [];
+
+    if (survey.questions && survey.questions.length > 0) {
+      questions = [...survey.questions, payload];
+    } else {
+      questions.push(payload);
+    }
 
     survey.questions = questions;
 
