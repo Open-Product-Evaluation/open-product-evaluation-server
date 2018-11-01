@@ -13,6 +13,7 @@ const login = (email, password) => client.mutate(
             email
             firstName
             lastName
+            isAdmin
           }
           token
         }
