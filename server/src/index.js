@@ -49,7 +49,7 @@ dbLoader.connectDB().then(() => {
 
   server.express.use(authMiddleware)
   server.express.use('/voyager', middleware({ endpointUrl: '/graphql' }))
-  server.express.use('/static', express.static('static'))
+  server.express.use('/images', express.static('static/images'))
 
   // load admin view into /admin and merge with /static
   server.express.use('/static', express.static(path.join(__dirname, '../../dist/static/')))

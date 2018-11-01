@@ -10,7 +10,7 @@ const images = [
     type: 'image/png',
     hash: '0258e9db051e7f2129ae5f6ba3cf3388c2fb39f5',
     tags: [],
-    url: 'static/images/default/likeIcon.png',
+    url: 'images/default/likeIcon.png',
   },
   {
     user: getObjectID('user1'),
@@ -21,7 +21,7 @@ const images = [
     type: 'image/png',
     hash: '0258e9db051e7f2129ae5f6ba3cf3388c2fb39f5',
     tags: [],
-    url: 'static/images/default/likeIcon.png',
+    url: 'images/default/likeIcon.png',
   },
   {
     user: getObjectID('user2'),
@@ -32,7 +32,7 @@ const images = [
     type: 'image/png',
     hash: '0258e9db051e7f2129ae5f6ba3cf3388c2fb39f5',
     tags: [],
-    url: 'static/images/default/likeIcon.png',
+    url: 'images/default/likeIcon.png',
   },
   {
     user: getObjectID('user2'),
@@ -43,7 +43,7 @@ const images = [
     type: 'image/png',
     hash: '0258e9db051e7f2129ae5f6ba3cf3388c2fb39f5',
     tags: [],
-    url: 'static/images/default/likeIcon.png',
+    url: 'images/default/likeIcon.png',
   },
   {
     user: getObjectID('user2'),
@@ -54,7 +54,7 @@ const images = [
     type: 'image/png',
     hash: '0258e9db051e7f2129ae5f6ba3cf3388c2fb39f5',
     tags: [],
-    url: 'static/images/default/likeIcon.png',
+    url: 'images/default/likeIcon.png',
   },
   {
     user: getObjectID('user2'),
@@ -65,7 +65,7 @@ const images = [
     type: 'image/png',
     hash: '0258e9db051e7f2129ae5f6ba3cf3388c2fb39f5',
     tags: [],
-    url: 'static/images/default/likeIcon.png',
+    url: 'images/default/likeIcon.png',
   },
   {
     user: getObjectID('user2'),
@@ -76,7 +76,7 @@ const images = [
     type: 'image/png',
     hash: '0258e9db051e7f2129ae5f6ba3cf3388c2fb39f5',
     tags: [],
-    url: 'static/images/default/likeIcon.png',
+    url: 'images/default/likeIcon.png',
   },
   {
     user: getObjectID('user2'),
@@ -87,7 +87,7 @@ const images = [
     type: 'image/png',
     hash: 'c8ce0922b686d0bcd5eff0f41ff12cd5dffbd779',
     tags: [],
-    url: 'static/images/default/dislikeIcon.png',
+    url: 'images/default/dislikeIcon.png',
   },
   {
     user: getObjectID('user2'),
@@ -98,7 +98,7 @@ const images = [
     type: 'image/png',
     hash: 'c8ce0922b686d0bcd5eff0f41ff12cd5dffbd779',
     tags: [],
-    url: 'static/images/default/dislikeIcon.png',
+    url: 'images/default/dislikeIcon.png',
   },
   {
     user: getObjectID('user2'),
@@ -109,7 +109,7 @@ const images = [
     type: 'image/png',
     hash: 'c8ce0922b686d0bcd5eff0f41ff12cd5dffbd779',
     tags: [],
-    url: 'static/images/default/dislikeIcon.png',
+    url: 'images/default/dislikeIcon.png',
   },
   {
     user: getObjectID('user2'),
@@ -120,7 +120,7 @@ const images = [
     type: 'image/png',
     hash: 'c8ce0922b686d0bcd5eff0f41ff12cd5dffbd779',
     tags: [],
-    url: 'static/images/default/dislikeIcon.png',
+    url: 'images/default/dislikeIcon.png',
   },
   {
     user: getObjectID('user1'),
@@ -132,7 +132,7 @@ const images = [
     type: 'image/png',
     hash: '4f43e19775fcb11264f47be83ab16a45c542dc84',
     tags: [],
-    url: 'static/images/default/happy.png',
+    url: 'images/default/happy.png',
   },
   {
     user: getObjectID('user1'),
@@ -144,7 +144,7 @@ const images = [
     type: 'image/png',
     hash: 'c30d42f225df1be08eddc3bc178b940f9f08305f',
     tags: [],
-    url: 'static/images/default/angry.png',
+    url: 'images/default/angry.png',
   },
   {
     user: getObjectID('user1'),
@@ -156,7 +156,7 @@ const images = [
     type: 'image/png',
     hash: '8277394c7b5ff16d3f3cae6f0c0d3b4b2e7e6936',
     tags: [],
-    url: 'static/images/default/eval1.jpeg',
+    url: 'images/default/eval1.jpeg',
   },
   {
     user: getObjectID('user1'),
@@ -168,7 +168,7 @@ const images = [
     type: 'image/png',
     hash: '8277394c7b5ff16d3f3cae6f0c0d3b4b2e7e6936',
     tags: [],
-    url: 'static/images/default/eval1.jpeg',
+    url: 'images/default/eval1.jpeg',
   },
   {
     user: getObjectID('user2'),
@@ -180,7 +180,7 @@ const images = [
     type: 'image/png',
     hash: '8277394c7b5ff16d3f3cae6f0c0d3b4b2e7e6936',
     tags: [],
-    url: 'static/images/default/eval1.jpeg',
+    url: 'images/default/eval1.jpeg',
   },
   {
     user: getObjectID('user2'),
@@ -192,7 +192,7 @@ const images = [
     type: 'image/png',
     hash: '8277394c7b5ff16d3f3cae6f0c0d3b4b2e7e6936',
     tags: [],
-    url: 'static/images/default/eval1.jpeg',
+    url: 'images/default/eval1.jpeg',
   },
   {
     user: getObjectID('user1'),
@@ -203,7 +203,7 @@ const images = [
     type: 'image/png',
     hash: '8277394c7b5ff16d3f3cae6f0c0d3b4b2e7e6936',
     tags: [],
-    url: 'static/images/default/eval1.jpeg',
+    url: 'images/default/eval1.jpeg',
   },
   {
     user: getObjectID('user2'),
@@ -214,7 +214,7 @@ const images = [
     type: 'image/png',
     hash: '8277394c7b5ff16d3f3cae6f0c0d3b4b2e7e6936',
     tags: [],
-    url: 'static/images/default/eval1.jpeg',
+    url: 'images/default/eval1.jpeg',
   },
   {
     user: getObjectID('user1'),
@@ -226,7 +226,7 @@ const images = [
     type: 'image/png',
     hash: '4b720822aa2c369714b652f7868a1a04b13543b5',
     tags: [],
-    url: 'static/images/default/eval2.jpeg',
+    url: 'images/default/eval2.jpeg',
   },
   {
     user: getObjectID('user1'),
@@ -238,7 +238,7 @@ const images = [
     type: 'image/png',
     hash: '4b720822aa2c369714b652f7868a1a04b13543b5',
     tags: [],
-    url: 'static/images/default/eval2.jpeg',
+    url: 'images/default/eval2.jpeg',
   },
   {
     user: getObjectID('user2'),
@@ -250,7 +250,7 @@ const images = [
     type: 'image/png',
     hash: '4b720822aa2c369714b652f7868a1a04b13543b5',
     tags: [],
-    url: 'static/images/default/eval2.jpeg',
+    url: 'images/default/eval2.jpeg',
   },
   {
     user: getObjectID('user2'),
@@ -262,7 +262,7 @@ const images = [
     type: 'image/png',
     hash: '4b720822aa2c369714b652f7868a1a04b13543b5',
     tags: [],
-    url: 'static/images/default/eval2.jpeg',
+    url: 'images/default/eval2.jpeg',
   },
   {
     user: getObjectID('user1'),
@@ -273,7 +273,7 @@ const images = [
     type: 'image/png',
     hash: '4b720822aa2c369714b652f7868a1a04b13543b5',
     tags: [],
-    url: 'static/images/default/eval2.jpeg',
+    url: 'images/default/eval2.jpeg',
   },
   {
     user: getObjectID('user2'),
@@ -284,7 +284,7 @@ const images = [
     type: 'image/png',
     hash: '4b720822aa2c369714b652f7868a1a04b13543b5',
     tags: [],
-    url: 'static/images/default/eval2.jpeg',
+    url: 'images/default/eval2.jpeg',
   },
 ]
 
