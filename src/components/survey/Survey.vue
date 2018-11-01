@@ -17,9 +17,9 @@
         <results></results>
       </tab>
 
-      <tab name="Analysis" :id="'Auswertung'">
+      <!--<tab name="Analysis" :id="'Auswertung'">
         <evaluation></evaluation>
-      </tab>
+      </tab>-->
 
     </tabs>
 
