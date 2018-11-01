@@ -42,7 +42,7 @@
           <li class="nav-item active">
             <a class="nav-link"
               href="/#/user"
-              v-if="currentUser.isAdmin"
+              v-if="currentUser.user.isAdmin"
               @click="showNavigation = !showNavigation;">
               Users
             </a>
@@ -56,7 +56,8 @@
               href="#"
               @click="toggleNavigation"
               :class="{'show': showDropdown}" >
-              Account <span class="caret"></span>
+              {{ currentUser.user.firstName}} {{currentUser.user.lastName}}
+              <span class="caret"></span>
             </a>
 
             <div class="dropdown-menu"
