@@ -18,7 +18,7 @@
 
           <div class="form-group">
             <label for="input_lastname">Lastname</label>
-            <input type="password"
+            <input type="text"
               class="form-control"
               id="input_lastname"
               v-model="lastname" />
