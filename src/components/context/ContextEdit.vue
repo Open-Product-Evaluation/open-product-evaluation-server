@@ -49,7 +49,10 @@
 
                     {{device.name}}
 
-                    <a href="#" class="float-right" @click="add($event, device)">
+                    <a href="#"
+                      class="float-right"
+                      @click="add($event, device)"
+                      v-if="isOwner(device.id, currentUser.id)">
                       <span class="oi oi-plus"></span>
                     </a>
                   </li>
@@ -72,7 +75,10 @@
 
                     {{device.name }}
 
-                    <a href="#" class="float-right" @click="remove($event, device)">
+                    <a href="#"
+                      class="float-right"
+                      @click="remove($event, device)"
+                      v-if="isOwner(device.id, currentUser.id)">
                       <span class="oi oi-x"></span>
                     </a>
                   </li>
@@ -138,6 +144,35 @@ export default {
 
       this.$store.dispatch('updateContext', payload);
     },
+    isOwner(deviceID, userID) {
+      const contextDevice = this.context.devices.find(d => d.id === deviceID);
+
+      let device = this.freeDevices.find(d => d.id === deviceID);
+
+      if (!device && !contextDevice) {
+        return false;
+      }
+
+      if (!device) {
+        device = contextDevice;
+      }
+
+      if (!device.owners) {
+        return false;
+      }
+
+      if (device.owners.length === 0) {
+        return false;
+      }
+
+      const user = device.owners.filter(o => o.id === userID);
+
+      if (user.length > 0) {
+        return true;
+      }
+
+      return false;
+    },
   },
   computed: {
     devices() {
@@ -163,6 +198,9 @@ export default {
     },
     surveys() {
       return JSON.parse(JSON.stringify(this.$store.getters.getSurveys));
+    },
+    currentUser() {
+      return this.$store.getters.getCurrentUser.user;
     },
   },
 };
