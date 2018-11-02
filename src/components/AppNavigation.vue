@@ -21,21 +21,21 @@
           <li class="nav-item active">
             <a class="nav-link"
               href="/#/survey"
-              @click="showNavigation = !showNavigation;">
+              @click="showNavigation = false;">
               Surveys
             </a>
           </li>
           <li class="nav-item active">
             <a class="nav-link"
               href="/#/context"
-              @click="showNavigation = !showNavigation;">
+              @click="showNavigation = false;">
               Contexts
             </a>
           </li>
           <li class="nav-item active">
             <a class="nav-link"
               href="/#/devices"
-              @click="showNavigation = !showNavigation;">
+              @click="showNavigation = false;">
               Devices
             </a>
           </li>
@@ -43,7 +43,7 @@
             <a class="nav-link"
               href="/#/user"
               v-if="currentUser.isAdmin"
-              @click="showNavigation = !showNavigation;">
+              @click="showNavigation = false;">
               Users
             </a>
           </li>
@@ -63,7 +63,7 @@
             <div class="dropdown-menu"
             :class="{'show': showDropdown}" >
 
-              <a class="dropdown-item" href="#" v-on:click="openProfile()">Profile</a>
+              <a class="dropdown-item" href="#" v-on:click="openProfile">Profile</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#" v-on:click="logout">Logout</a>
             </div>
@@ -94,10 +94,12 @@ export default {
     logout(event) {
       event.preventDefault();
       this.$store.dispatch('logout').then(() => this.$router.replace('/'));
+      this.showNavigation = false;
     },
     openProfile() {
       event.preventDefault();
       this.showDropdown = !this.showDropdown;
+      this.showNavigation = false;
       Router.push('/profile');
     },
   },
