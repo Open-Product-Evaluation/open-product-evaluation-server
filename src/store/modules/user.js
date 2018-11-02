@@ -72,6 +72,9 @@ const actions = {
   },
   register(context, payload) {
     Auth.register(payload.firstname, payload.lastname, payload.email, payload.password)
+      .then(() => {
+        Router.push('/');
+      })
       .catch(error => context.commit('error',
         {
           key: 'register',
