@@ -15,6 +15,10 @@
         </div>
       </div>
 
+      <p class="text-center" v-if="devices && devices.length === 0">
+        There are no devices.
+      </p>
+
       <p class="alert alert-info"
         v-if="filteredDevices.length === 0 && devices.length !== 0">
         This search returned no results.
