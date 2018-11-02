@@ -17,6 +17,10 @@
         </div>
       </div>
 
+      <p class="text-center" v-if="users && users.length === 0">
+        There are no users.
+      </p>
+
       <p class="alert alert-info"
         v-if="filteredUsers.length === 0 && users.length !== 0">
         This search returned no results.
