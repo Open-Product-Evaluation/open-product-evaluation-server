@@ -12,6 +12,7 @@ module.exports = (db, eventEmitter) => {
         .limit(limit)
         .skip(offset)
         .sort(sort)
+
       if (contexts.length === 0) throw new Error('No contexts found')
       return contexts
     } catch (e) {
