@@ -120,9 +120,9 @@ inquirer.prompt(questions)
     checkConnection(answers.db_host, answers.db_port, answers.db_name)
       .then(() => {
         const env = {
-          'OPE_HOST': answers.host,
+          'HOST': answers.host,
           'OPE_HTTPS': answers.https,
-          'OPE_PORT': answers.port,
+          'PORT': answers.port,
           'OPE_SECRET': shortID.generate(),
           'NODE_ENV': answers.env,
           'DB_NAME': answers.db_name,

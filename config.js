@@ -28,7 +28,7 @@ const socketURL = () => {
 // prefix server settings with OPE_ to avoid naming conflicts with vue.js
 module.exports = {
   app: {
-    host: process.env.OPE_HOST || 'localhost',
+    host: process.env.HOST || 'localhost',
     rootURL: determineURL(),
     socketURL: socketURL(),
     https: process.env.OPE_HTTPS === 'true' || false,
