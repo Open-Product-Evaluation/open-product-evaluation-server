@@ -4,7 +4,7 @@
   "private": true,
   "description": "Open Product Evaluation Server is a service that provides an API to evaluate different products e.g. apps or websites",
   "scripts": {
-    "start": "npm run build && node src/index.js",
+    "start": "node src/index.js",
     "dev": "nodemon src/index.js --voyager --playground",
     "test": "jest -i",
     "build": "vue-cli-service build",
