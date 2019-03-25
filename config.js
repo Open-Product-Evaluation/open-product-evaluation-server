@@ -32,7 +32,7 @@ module.exports = {
     rootURL: determineURL(),
     socketURL: socketURL(),
     https: process.env.OPE_HTTPS === 'true' || false,
-    port: parseInt(process.env.OPE_PORT, 10) || 3000,
+    port: parseInt(process.env.PORT, 10) || 3000,
     jwtSecret: process.env.OPE_SECRET || '1CBFA92540817289522D82D20C02A09C',
     imageRoute: '/images',
     imageFolder: path.resolve(__dirname, './static/images'),
