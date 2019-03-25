@@ -42,7 +42,7 @@ module.exports = {
   connectDB: async () => {
     try {
       await mongoose.connect(
-        `mongodb://${config.db.host}:${config.db.port}/${config.db.name}`,
+        process.env.MONGO_URL || `mongodb://${config.db.host}:${config.db.port}/${config.db.name}`,
         {useNewUrlParser: true},
       )
     } catch (e) {
