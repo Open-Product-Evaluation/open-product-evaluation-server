@@ -275,6 +275,3 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
-
-# ignore graphql docs
-index.html
