@@ -28,3 +28,7 @@ For more informations about graphql types, queries, mutations and subscriptions 
 You can find the [GraphQL Playground](https://github.com/graphcool/graphql-playground) on http://localhost:3000/playground (development only).
 
 You can find [Voyager](https://github.com/graphcool/graphql-playground) on http://localhost:3000/voyager (development only).
+
+# Example
+
+![OPE Demo](https://raw.githubusercontent.com/wiki/open-product-evaluation/open-product-evaluation-server/files/ope.gif)
